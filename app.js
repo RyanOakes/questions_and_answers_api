@@ -2,17 +2,20 @@
 
 var express = require("express");
 var app = express();
+var jsonParser = require("body-parser").json;
 
-//linking up middleware
-app.use(function(req, res, next) {
-  console.log("The leaves on the trees are", req.query.color);
+var jsonCheck = function(req, res, next){
+  if(req.body){
+      console.log("The sky is", req.body.color)
+  } else {
+    console.log("There is no body property on the request")
+  }
   next();
-});
+}
 
-// app.use(function(req, res, next) {
-//   console.log(req.myMessage);
-//   next();
-// });
+app.use(jsonCheck);
+app.use(jsonParser());
+app.use(jsonCheck)
 
 var port = process.env.PORT || 3000;
 
