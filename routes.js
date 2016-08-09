@@ -63,7 +63,7 @@ router.delete("/:qID/answers/:aID", function(req, res){
 // Vote on a specific answer
 router.post("/:qID/answers/:aID/vote-:dir", function(req, res, next){
     if(req.params.dir.search(/^(up|down)$/) == -1) {
-        var err = new Error("Vote mechanic note found");
+        var err = new Error("Vote mechanic not found");
         err.status = 404;
         next(err);
     } else {
